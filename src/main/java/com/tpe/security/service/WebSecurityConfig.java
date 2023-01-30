@@ -1,4 +1,4 @@
-package com.tpe.security;
+package com.tpe.security.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -15,7 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+// @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -23,8 +23,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeHttpRequests().antMatchers("/","index.html","/css/*","/js/*").permitAll().anyRequest()
-                .authenticated().and().httpBasic();
+        http.csrf().disable().authorizeHttpRequests().antMatchers("/","index.html","/css/*","/js/*","/register").
+                permitAll().and().authorizeRequests().antMatchers("/students/**").hasRole("ADMIN").anyRequest().
+                authenticated().and().httpBasic();
     }
 
     @Bean

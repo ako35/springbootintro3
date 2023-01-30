@@ -17,7 +17,7 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "tbl-user")
+@Table(name = "tbl_user")
 public class User {
 
     @Id
