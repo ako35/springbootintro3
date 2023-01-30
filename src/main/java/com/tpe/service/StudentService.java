@@ -59,4 +59,17 @@ public class StudentService {
     public Page<Student> getAllStudentWithPage(Pageable pageable) {
         return studentRepository.findAll(pageable);
     }
+
+
+    public List<Student> getStudentByLastName(String lastName) {
+        return studentRepository.findByLastName(lastName);
+    }
+
+    public List<Student> findAllEqualsGrade(Integer grade) {
+        return studentRepository.findallEqualsGrade(grade);
+    }
+
+    public StudentDTO findStudentDTOById(Long id) {
+        return studentRepository.findStudentDTOById(id).orElseThrow(()->new ResourceNotFoundException("Student not found with id: "+id));
+    }
 }
